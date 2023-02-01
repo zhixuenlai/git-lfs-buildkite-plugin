@@ -6,18 +6,10 @@ set -euo pipefail
 echo "--- Installing Git LFS v${BUILDKITE_PLUGIN_GIT_LFS_VERSION}"
 
 # Install Git LFS
-mkdir .gitlfs/
-export PATH=$PATH:.gitlfs/
-
 curl -Lsf -o git-lfs.tgz https://github.com/git-lfs/git-lfs/releases/download/v${BUILDKITE_PLUGIN_GIT_LFS_VERSION}/git-lfs-linux-amd64-v${BUILDKITE_PLUGIN_GIT_LFS_VERSION}.tar.gz
-
-mkdir git-lfs
-tar -xvzf git-lfs.tgz -C git-lfs
-mv git-lfs/git-lfs .gitlfs/git-lfs
-rm -rf git-lfs.tgz git-lfs/
-
-# Initialize Git LFS
-git lfs install
+tar -xvzf git-lfs.tgz
+./git-lfs-${BUILDKITE_PLUGIN_GIT_LFS_VERSION}/install.sh
+rm -rf git-lfs.tgz git-lfs-${BUILDKITE_PLUGIN_GIT_LFS_VERSION}/
 
 # https://github.com/git-lfs/git-lfs/issues/2291#issuecomment-305887405
 rm .git/hooks/pre-push
