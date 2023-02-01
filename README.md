@@ -11,8 +11,15 @@ steps:
   - label: ":pipeline: Pipeline upload"
     command: /usr/bin/buildkite-agent pipeline upload
     plugins:
-      - zhixuenlai/git-lfs#v1.0.0: ~
+      - zhixuenlai/git-lfs#v1.0.0:
+          version: '3.3.0'
 ```
+
+## Configuration
+
+### `version` (Required, string)
+
+The version of the Git LFS to be installed, for example `3.3.0`. The available version can be found on the [GitHub releases page](https://github.com/git-lfs/git-lfs/releases).
 
 ## Developing
 
