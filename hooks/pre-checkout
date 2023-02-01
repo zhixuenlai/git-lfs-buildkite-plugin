@@ -3,8 +3,14 @@ set -euo pipefail
 
 echo "--- Installing Git LFS"
 
-apk update
+apt-get update --allow-releaseinfo-change -q
+apt-get install -y -qq --no-install-recommends curl
+
 # Install Git LFS
-apk add git-lfs
+curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
+apt-get install -y -qq --no-install-recommends git-lfs
+
+# Initialize Git LFS
+git lfs install
 
 echo "--- Git LFS installed successfully"
