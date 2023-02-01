@@ -1,0 +1,10 @@
+#!/bin/bash
+set -euo pipefail
+
+echo "--- Installing Git LFS"
+
+apk update
+# Install Git LFS
+apk add git-lfs
+
+echo "--- Git LFS installed successfully"

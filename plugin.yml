@@ -1,0 +1,7 @@
+name: Git LFS Installer
+description: Install Git LFS before checkout
+author: https://github.com/zhixuenlai
+requirements: []
+configuration:
+  properties: {}
+  additionalProperties: false
