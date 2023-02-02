@@ -6,21 +6,14 @@ set -euo pipefail
 echo "--- Installing Git LFS v${BUILDKITE_PLUGIN_GIT_LFS_VERSION}"
 
 # Install Git LFS
-mkdir -p .gitlfs/
-rm -rf .gitlfs/git-lfs*
-export PATH=$PATH:.gitlfs/
-
 curl -Lsf -o git-lfs.tgz https://github.com/git-lfs/git-lfs/releases/download/v${BUILDKITE_PLUGIN_GIT_LFS_VERSION}/git-lfs-linux-amd64-v${BUILDKITE_PLUGIN_GIT_LFS_VERSION}.tar.gz
 tar -xvzf git-lfs.tgz
-mv git-lfs-${BUILDKITE_PLUGIN_GIT_LFS_VERSION}/git-lfs .gitlfs/git-lfs
+cp -a git-lfs-${BUILDKITE_PLUGIN_GIT_LFS_VERSION}/git-lfs "$(git --exec-path)/git-lfs"
 rm -rf git-lfs.tgz git-lfs-${BUILDKITE_PLUGIN_GIT_LFS_VERSION}/
 
 git lfs install
 
 # Double check if Git LFS is installed successfully
 git lfs --version
-
-# Create a symbolic file in Git's search path
-ln -s "$(which git-lfs)" "$(git --exec-path)/git-lfs"
 
 echo "--- Git LFS v${BUILDKITE_PLUGIN_GIT_LFS_VERSION} installed successfully"
