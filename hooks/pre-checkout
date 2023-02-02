@@ -17,4 +17,10 @@ rm -rf git-lfs.tgz git-lfs-${BUILDKITE_PLUGIN_GIT_LFS_VERSION}/
 
 git lfs install
 
+# Double check if Git LFS is installed successfully
+git lfs --version
+
+# Create a symbolic file in Git's search path
+ln -s "$(which git-lfs)" "$(git --exec-path)/git-lfs"
+
 echo "--- Git LFS v${BUILDKITE_PLUGIN_GIT_LFS_VERSION} installed successfully"
