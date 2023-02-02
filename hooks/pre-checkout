@@ -6,7 +6,8 @@ set -euo pipefail
 echo "--- Installing Git LFS v${BUILDKITE_PLUGIN_GIT_LFS_VERSION}"
 
 # Install Git LFS
-mkdir .gitlfs/
+mkdir -p .gitlfs/
+rm -rf .gitlfs/git-lfs*
 export PATH=$PATH:.gitlfs/
 
 curl -Lsf -o git-lfs.tgz https://github.com/git-lfs/git-lfs/releases/download/v${BUILDKITE_PLUGIN_GIT_LFS_VERSION}/git-lfs-linux-amd64-v${BUILDKITE_PLUGIN_GIT_LFS_VERSION}.tar.gz
